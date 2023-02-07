@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>room</title>
+</head>
+<body>
+    <textarea id="chats" cols="30" rows="10"></textarea>
+    <input type="text">
+    <button class="send">send</button>
+    <button class="a">disconnect</button>
+    <script type="text/javascript">
+        let chat = document.querySelector('#chats')
+        let button = document.querySelector(".a")
+        let send = document.querySelector('.send')
+        let text = document.querySelector('input')
+        let url= `ws://${window.location.host}/ws/socket-server`
+        const chatsocket = new WebSocket(url)
+
+
+        chatsocket.onmessage= e=>{
+            let data = JSON.parse(e.data)
+            chat.value += `\n${data.message}`
+        }
+
+        button.addEventListener('click',e=>{
+            chatsocket.close()
+        })
+
+        send.addEventListener('click',e=>{
+            let message=text.value
+            chatsocket.send(JSON.stringify({
+                'message': message
+            }))
+            text.value=''
+        })
+
+    </script>
+</body>
+</html>
