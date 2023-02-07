@@ -44,6 +44,12 @@ INSTALLED_APPS = [
 
 ASGI_APPLICATION = 'miniproject.asgi.application'
 
+CHANNEL_LAYERS ={
+    'default':{
+        'BACKEND':'channels.layers.InMemoryChannelLayer'
+    }
+}
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -72,7 +78,7 @@ TEMPLATES = [
     },
 ]
 
-# WSGI_APPLICATION = 'miniproject.wsgi.application'
+WSGI_APPLICATION = 'miniproject.wsgi.application'
 
 
 # Database
