@@ -75,6 +75,10 @@ function helper(template, data, extra) {
         domElem = document.importNode(template.content, true)
         message = domElem.querySelector('p')
         message.textContent = data.message
+        if (user.toLowerCase() != data.user.toLowerCase()){
+            let username =domElem.querySelector('.username')
+            username.textContent=data.user
+        }
         messageDisplay.appendChild(domElem)
     }
 }

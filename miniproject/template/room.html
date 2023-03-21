@@ -16,8 +16,8 @@
   <script defer src="{% static 'script/room.js' %}"></script>
 </head>
 
-<body>
-  <section style="background-color: #CDC4F9;">
+<body>  
+    <section style="height:100vh;width:100vw;background-color: rgb(236, 202, 234);">
     <div class="container py-5">
 
       <div class="row">
@@ -54,14 +54,14 @@ first col here
  <!-- chat section  -->
                 <div class="col-md-8 col-lg-7 col-xl-8">
 
-                  <div class="pt-3 pe-3 scrollableContainer messageDisplay" data-mdb-perfect-scrollbar="true">
+                  <div  class="pt-3 pe-3 scrollableContainer messageDisplay" data-mdb-perfect-scrollbar="true" onclick="scrolldown()">
                   </div>
 
                   <div class="text-muted d-flex justify-content-start align-items-center pe-3 pt-3 mt-2">
                     <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava6-bg.webp"
                       alt="avatar 3" style="width: 40px; height: 100%;">
-                    <form id="chat-message">
-                      <input type="text" class="form-control form-control-lg" id="exampleFormControlInput2"
+                    <form id="chat-message" >
+                      <input  type="text" class="form-control form-control-lg" id="exampleFormControlInput2"
                         placeholder="Type message">
                     </form>
                     <a class="ms-1 text-muted" href="#!"><i class="fas fa-paperclip"></i></a>
@@ -88,18 +88,19 @@ first col here
       </div>
       <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp" alt="avatar 1"
         style="width: 45px; height: 100%;">
+        
     </div>
   </template>
 
   <template class="Incoming_Message">
     <div class="d-flex flex-row justify-content-start">
       <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava6-bg.webp" alt="avatar 1"
-        style="width: 45px; height: 100%;">
+        style="width: 45px; height: 100%;"> 
       <div>
-        <p class="small p-2 ms-3 mb-1 rounded-3" style="background-color: #f5f6f7;"></p>
-        <p></p>
-      </div>
+        <p class="small p-2 ms-3 mb-1 rounded-3" style="background-color: #f5f6f7;"></p> 
+      </div>  
     </div>
+    <div><p class=" username" style="margin-left:0%;color:blue;font-weight:normal;"></p></div>
   </template>
 
   <template class="user">
@@ -118,6 +119,8 @@ first col here
       </a>
     </li>
   </template>
+
+
 </body>
 
 </html>

@@ -15,6 +15,7 @@ class chatconsumer(WebsocketConsumer):
         )
 
         self.accept()
+        #imageneration code will come here
         
         helper(user_name=self.user_name,group_name=self.room_name).save()
 
@@ -25,7 +26,6 @@ class chatconsumer(WebsocketConsumer):
          'message':'you are now connected',
          'inRoom': str(temp).split(' ',1)[1].split(">")[0]
         }))
-
         
 
         async_to_sync(self.channel_layer.group_send)(
