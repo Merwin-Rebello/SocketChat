@@ -20,6 +20,7 @@ const chatsocket = new WebSocket(url)
 
 chatsocket.onmessage = e => {
     let data = JSON.parse(e.data)
+    user = window.location.pathname.split('/')[1]
     if (data.inRoom) {
         let string = data.inRoom.replaceAll('\'', '\"')
         let usersInRoom = JSON.parse(string)
@@ -48,6 +49,7 @@ chatsocket.onmessage = e => {
         info(data)
     }
     console.log(data);
+    messageDisplay.scrollTop=messageDisplay.scrollHeight
 }
 
 form.addEventListener('submit', e => {
@@ -61,7 +63,6 @@ form.addEventListener('submit', e => {
 
 function helper(template, data, extra) {
     if (extra) {
-        console.log(">>>data", data);
         domElem = document.importNode(template.content, true)
         message = domElem.querySelector('p')
         if (data.user_name) {

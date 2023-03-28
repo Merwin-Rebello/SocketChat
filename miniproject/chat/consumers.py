@@ -1,6 +1,6 @@
 import json
 from channels.generic.websocket import WebsocketConsumer
-from .models import helper
+from .models import Chat_helper
 from asgiref.sync import async_to_sync
 
 class chatconsumer(WebsocketConsumer):
@@ -17,9 +17,9 @@ class chatconsumer(WebsocketConsumer):
         self.accept()
         #imageneration code will come here
         
-        helper(user_name=self.user_name,group_name=self.room_name).save()
+        Chat_helper(user_name=self.user_name,group_name=self.room_name).save()
 
-        temp = helper.objects.filter(group_name=self.room_name).values("user_name")
+        temp = Chat_helper.objects.filter(group_name=self.room_name).values("user_name")
 
         self.send(text_data=json.dumps({
          'type':"connection_established",
@@ -41,7 +41,7 @@ class chatconsumer(WebsocketConsumer):
     # disconnect method start 
     
     def disconnect(self,code):
-        a=helper.objects.filter(user_name=self.user_name)
+        a=Chat_helper.objects.filter(user_name=self.user_name)
         a.filter(group_name=self.room_name).delete()
         async_to_sync(self.channel_layer.group_send)(
            self.room_name,
@@ -69,7 +69,7 @@ class chatconsumer(WebsocketConsumer):
         )
     # recieve method ended 
 
-    # helper methods
+    # Chat_helper methods
 
     def chat_message(self,event):
         message=event['message']
@@ -82,7 +82,7 @@ class chatconsumer(WebsocketConsumer):
 
     # @database_async_to_sync
     # def getusersInRoom(self):
-    #     return helper.objects.filter(group_name=self.room_name)
+    #     return Chat_helper.objects.filter(group_name=self.room_name)
 
     def new_user(self,event):
         self.send(text_data=json.dumps(event))
