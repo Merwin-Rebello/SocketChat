@@ -19,6 +19,7 @@ let url = `ws://${window.location.host}/ws/socket-server${window.location.pathna
 const chatsocket = new WebSocket(url)
 
 chatsocket.onmessage = e => {
+    user = window.location.pathname.split('/')[1]
     let data = JSON.parse(e.data)
     if (data.inRoom) {
         let string = data.inRoom.replaceAll('\'', '\"')
@@ -47,7 +48,7 @@ chatsocket.onmessage = e => {
     else {
         info(data)
     }
-    console.log(data);
+    messageDisplay.scrollTop=messageDisplay.scrollHeight
 }
 
 form.addEventListener('submit', e => {
